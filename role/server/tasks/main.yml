@@ -42,7 +42,7 @@
     params: 'num_devices=4'
 
 - name: Enabled zram
-  shell: for i in 0 1; do /bin/echo 268435456 > /sys/block/zram$i/disksize && mkswap /dev/zram$i && swapon /dev/zram$i -p 10 && /bin/grep zram$i /etc/fstab || /bin/echo -e "/dev/zram$i\t\t\tswap\t\t\tswap\tpri=10 0 0" >> /etc/fstab; done
+  shell: for i in 0 1 2 3; do /bin/echo 268435456 > /sys/block/zram$i/disksize && mkswap /dev/zram$i && swapon /dev/zram$i -p 10 && /bin/grep zram$i /etc/fstab || /bin/echo -e "/dev/zram$i\t\t\tswap\t\t\tswap\tpri=10 0 0" >> /etc/fstab; done
 
 - name: Inserted modules-load.d/zram.conf
   copy: src=modules-load.d_zram.conf dest=/etc/modules-load.d/zram.conf
